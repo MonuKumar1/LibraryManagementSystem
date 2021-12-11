@@ -5,18 +5,18 @@
 The following functionalities are there in  application:
 
 # Base Library System
- Librarians must be able to maintain:<br>
-  #### Books with stock maintained<br>
-  #### Members<br>
-  #### Transactions<br>
- ### The use cases included here are to:<br>
+### Librarians must be able to maintain:<br>
+*  Books with stock maintained<br>
+*  Members<br>
+*  Transactions<br>
+* The use cases included here are to:<br>
 
-  ####  Perform general CRUD operations on Books and Members<br>
-   #### Issue a book to a member<br>
-   #### Issue a book return from a member<br>
-   #### Search for a book by name and author<br>
-   #### Charge a rent fee on book returns<br>
-   #### Make sure a member’s outstanding debt is not more than Rs.500<br>
+### Perform general CRUD operations on Books and Members<br>
+* Issue a book to a member<br>
+* Issue a book return from a member<br>
+* Search for a book by name and author<br>
+* Charge a rent fee on book returns<br>
+* Make sure a member’s outstanding debt is not more than Rs.500<br>
 
 
 # Overview
