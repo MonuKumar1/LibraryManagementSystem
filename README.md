@@ -9,9 +9,9 @@ The following functionalities are there in  application:
 *  Books with stock maintained<br>
 *  Members<br>
 *  Transactions<br>
-* The use cases included here are to:<br>
+### The use cases included here are to:<br>
 
-### Perform general CRUD operations on Books and Members<br>
+* Perform general CRUD operations on Books and Members<br>
 * Issue a book to a member<br>
 * Issue a book return from a member<br>
 * Search for a book by name and author<br>
