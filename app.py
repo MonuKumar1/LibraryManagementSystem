@@ -11,7 +11,7 @@ import requests
 from werkzeug.wrappers import response
 
 # setting up Flask instance
-app = Flask(__name__)
+app = Flask(__name__,static_url_path="", static_folder="static")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Library.db'
 
@@ -57,7 +57,12 @@ class Transactions(db.Model):
 @app.route('/')
 def home():
     available_books = Books.query.all()
-    return render_template('home.html' , books = available_books)
+    return render_template('home2.html' , books = available_books)
+
+@app.route('/h2')
+def home3():
+    available_books = Books.query.all()
+    return render_template('home3.html' , books = available_books)
 
 
 @app.route('/members', methods = ["POST" , "GET"])
@@ -102,7 +107,7 @@ def members():
 
     # no matter if the method is GET or POST we need to render the available member list.
     members = Members.query.all()                               # Getting all the members
-    return render_template('members.html', members = members)   # rendering the page for members
+    return render_template('members2.html', members = members,active_members=True)   # rendering the page for members
         
 
 # this function loads all the transactons
@@ -113,7 +118,7 @@ def transactions():
     # Taking all the transactions and arranging them from most recent to least recent.
 
     transactions = Transactions.query.order_by(Transactions.time.desc()).all() 
-    return render_template('transactions.html', transactions = transactions)
+    return render_template('transactions2.html', transactions = transactions,active_transactions=True)
 
 
 # Renders Analytics Page
@@ -129,7 +134,7 @@ def analytics():
     # This query takes the top 5 people who have spent the most
     top_spenders  = Members.query.order_by(Members.library_fees_given.desc()).limit(5).all()
 
-    return render_template('analytics.html', books = popular_books , people = top_spenders)
+    return render_template('analytics2.html', books = popular_books , people = top_spenders,active_analytics=True)
 
 
 # Logic for renting out a book
@@ -178,7 +183,7 @@ def rent_out(book_id):
 
         try:
 
-            member.member_borrowed = True   # Member has borrowed a book.
+            member.member_borrowed = True   # Member has borrowed a book.?????????????????????????????????????
             member.member_balance -= 500    # members balance Should Decrease by 500.
             member.library_fees_given += 500    # Member paid 500 rs to the Library.
 
@@ -211,9 +216,10 @@ def rent_out(book_id):
                                 )
         
     return render_template(
-                        'rent_out.html',
+                        'rent_out2.html',
                         id = book_id,
-                        members = all_members
+                        members = all_members,
+                        active_return_book=True
                         )
 
 
@@ -229,7 +235,7 @@ def addBooks():
         # pass the data in LMS and then redirect to root page.
         # render the data recieved.
 
-        # Gets the data from The API.
+        # Gets the data from The API.???????????????????????????????????????????????????????????????????
         response = make_API_call()
 
         # going through data.
@@ -260,7 +266,7 @@ def addBooks():
 
     else:
 
-        return render_template('add_books.html')
+        return render_template('add_books2.html',active_addBooks=True)
 
 
 @app.route('/addCustomBooks', methods=["POST"])
@@ -318,8 +324,9 @@ def return_book():
                         ).all()
 
     return render_template(
-                        'return_book.html',
-                        books = books
+                        'return_book2.html',
+                        books = books,
+                        active_return_book=True
                         )
 
 
@@ -362,7 +369,7 @@ def summary(id):
     member.member_borrowed = False  # set this property to False as the member has not borrowed a book.
     db.session.commit()     # commit changes.
 
-    return render_template('summary.html', member = member)
+    return render_template('summary2.html', member = member)
 
 
 @app.route('/delete_member/<int:id>')
@@ -399,8 +406,17 @@ def update(id):
 
             return render_template('error.html', message = "Unexpected Error Occured")
     else:
-        return render_template('update.html', id = id)
+        return render_template('update2.html', id = id)
 
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('error2.html'), 404
+
+
+    
 
 # Helper Functions
 # checks if a string is alphabetical
@@ -414,7 +430,7 @@ def remove_spaces(s : str):
 
 
 # This Function Makes The API call and returns The response
-def make_API_call():
+def make_API_call():#??????????????????
     # This is The Base Url from which we will make the imports
     BASE_URL = 'https://frappe.io/api/method/frappe-library?'
 

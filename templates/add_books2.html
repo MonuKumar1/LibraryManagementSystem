@@ -1,0 +1,100 @@
+{% extends "base2.html" %} 
+{% block content %}
+
+<div style="width: 70%; margin-left: auto; margin-right: auto">
+  <h4 style="margin-top: 5%; margin-bottom: 5%">Add books from the API</h4>
+  <form action="/addBooks" method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        placeholder="INVISIBLE MAN"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input
+        type="text"
+        class="form-control"
+        name="author"
+        placeholder="Ralph Ellison"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="isbn" class="form-label">ISBN</label>
+      <input
+        type="text"
+        class="form-control"
+        name="isbn"
+        placeholder="I.S.B.N"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="publisher" class="form-label">Publisher</label>
+      <input
+        type="text"
+        class="form-control"
+        name="publisher"
+        placeholder="Random House"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <h4 style="margin-top: 5%; margin-bottom: 5%">Add Custom Books</h4>
+  <form action="/addCustomBooks" method="POST">
+    <div class="mb-3">
+      <label for="book_id" class="form-label">BOOK ID</label>
+      <input
+        type="number"
+        class="form-control"
+        name="book_id"
+        placeholder="1723"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="book_name" class="form-label">Book Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="book_name"
+        placeholder="A PASSAGE TO INDIA"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input
+        type="text"
+        class="form-control"
+        name="author"
+        placeholder=" E.M. Forster"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="publisher" class="form-label">Publisher</label>
+      <input
+        type="text"
+        class="form-control"
+        name="publisher"
+        placeholder="Penguin house"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="isbn" class="form-label">ISBN</label>
+      <input
+        type="number"
+        class="form-control"
+        name="isbn"
+        placeholder="I.S.B.N"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+{% endblock %}
